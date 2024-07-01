@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { DonutService } from './services/donut.service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,9 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'DonutShop';
+  constructor(private _donutService:DonutService) {}
+
+  getCartCount():number{
+    return this._donutService.cart.length;
+  }
 }

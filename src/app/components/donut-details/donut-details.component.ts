@@ -13,16 +13,13 @@ import { DonutDetails } from '../../models/donut-details';
 export class DonutDetailsComponent {
 constructor(private activatedRoute: ActivatedRoute, private _donutService:DonutService){}
 donutResult: DonutDetails = {} as DonutDetails;
-id: number = this.donutResult.id;
 ngOnInit() {
   this.activatedRoute.paramMap.subscribe((paramMap) => {
-    let id = Number(paramMap.get("id"));
-    console.log(id);
-      this.id = id; 
-      this._donutService.getDonutsById(this.id).subscribe((response: DonutDetails) => {    
+    let id:number = Number(paramMap.get("id"));
+    // console.log(id);
+      this._donutService.getDonutsById(id).subscribe((response: DonutDetails) => {    
         this.donutResult = response;
-        console.log(this.donutResult);
-        
+        // console.log(this.donutResult);        
       });
     
   });

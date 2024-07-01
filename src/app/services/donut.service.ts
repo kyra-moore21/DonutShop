@@ -21,10 +21,10 @@ export class DonutService {
 
   addToCart(d:DonutDetails){
       this.cart.push(d);
-      console.log(this.cart);
+      // console.log(this.cart);
   }
   removeFromCart(d:DonutDetails){
-    let index:number = this.cart.findIndex(x => x.id = d.id);
+    let index:number = this.cart.findIndex(x => x == d);
     this.cart.splice(index, 1);
   }
   resetCart(){

@@ -5,12 +5,13 @@ import { DonutDetailsComponent } from './components/donut-details/donut-details.
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export const routes: Routes = [
+    {path:"", redirectTo: "/donuts", pathMatch:"full"},
     //homepage
-    {path:"", component: DonutComponent},
+    {path:"donuts", component: DonutComponent},
     //cart
-    {path:"cart", component: CartComponent},
+    {path:"donuts/cart", component: CartComponent},
     //details
-    {path: ":id", component:DonutDetailsComponent},
+    {path: "donuts/:id", component:DonutDetailsComponent},
     //404
     {path:"**", component: NotFoundComponent}
 ];

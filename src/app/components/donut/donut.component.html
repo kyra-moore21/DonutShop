@@ -2,7 +2,7 @@
 
 <ul>
 @for (d of donutResult.results; track d.id) {
-    <li  [routerLink]="['/', d.id]">{{d.name}}</li>
+    <li><a [routerLink]="['/donuts', d.id]">{{d.name}}</a></li>
 }
 </ul>
 

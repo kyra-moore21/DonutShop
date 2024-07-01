@@ -10,31 +10,30 @@ import { DonutService } from '../../services/donut.service';
   styleUrl: './cart.component.css'
 })
 export class CartComponent {
-  cal:number = 0;
-  ngOnInit(){
-    this.getCalories();
-  }
+  
   constructor(private _donutService:DonutService){}
  getCart():DonutDetails[]{
   return this._donutService.cart;
  }
  deleteItem(i:DonutDetails){
   this._donutService.removeFromCart(i);
-  this.getCalories();
+
  }
  resetCart(){
   this._donutService.resetCart();
-  this.getCalories();
- }
- getCartLength():number {
-  return this._donutService.cart.length;
+
  }
  
- getCalories():void{
-  this.cal = 0;
-    this._donutService.cart.forEach(c =>  {
-      this.cal += c.calories;
-    });
-   
+ getCalories():number{ 
+  return this._donutService.cart.reduce((total:number, current:DonutDetails) => total + current.calories ,0)
+ }
+
+ getCartDistinct():DonutDetails[]{
+  let map = new Map(this._donutService.cart.map(pos => [pos.id, pos]));
+  return [...map.values()];
+ }
+
+ getItemQuantity(i:DonutDetails):number{
+  return this._donutService.cart.reduce((total:number, current:DonutDetails) => current == i ? total + 1: total, 0);
  }
 }
